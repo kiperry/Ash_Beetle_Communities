@@ -2,7 +2,7 @@
 #
 # Analysis of Ash Common Garden Beetle Data
 #
-# Focus on herbivorous beetles
+# Focus on native herbivorous beetles
 #
 # NMDS analyses of bark and spray beetle data
 # to compare communities on ash species and hybrid ash
@@ -11,7 +11,7 @@
 #
 # Partition beta-diversity for bark and spray beetle data
 #
-# KI Perry; 11 June 2020
+# KI Perry; 11 June 2020; updated 15 June 2020
 #
 ##########################################################
 
@@ -43,7 +43,7 @@ citation("viridis")
 
 # import data 
 
-dat <- read.csv("./Data_Bark_Spray_Herbivores.csv", row.names = 1)
+dat <- read.csv("./Data_Bark_Spray_NHerbivores.csv", row.names = 1)
 
 # check structure of data
 
@@ -94,10 +94,10 @@ rare.bark.M <- bark[which(bark$species == "M"),]
 rare.bark.N <- bark[which(bark$species == "N"),]
 rare.bark.P <- bark[which(bark$species == "P"),]
 
-sp.bark.H <- specaccum(rare.bark.H[7:71], method = "rarefaction", permutations = 100, gamma = "jack2")
-sp.bark.M <- specaccum(rare.bark.M[7:71], method = "rarefaction", permutations = 100, gamma = "jack2")
-sp.bark.N <- specaccum(rare.bark.N[7:71], method = "rarefaction", permutations = 100, gamma = "jack2")
-sp.bark.P <- specaccum(rare.bark.P[7:71], method = "rarefaction", permutations = 100, gamma = "jack2")
+sp.bark.H <- specaccum(rare.bark.H[7:64], method = "rarefaction", permutations = 100, gamma = "jack2")
+sp.bark.M <- specaccum(rare.bark.M[7:64], method = "rarefaction", permutations = 100, gamma = "jack2")
+sp.bark.N <- specaccum(rare.bark.N[7:64], method = "rarefaction", permutations = 100, gamma = "jack2")
+sp.bark.P <- specaccum(rare.bark.P[7:64], method = "rarefaction", permutations = 100, gamma = "jack2")
 
 plot(sp.bark.H, pch = 19, col = "#FDE725FF", xvar = c("individuals"), lty = 1, lwd = 3,
           ylab = "Species Richness", xlab = "Number of Individuals", xlim = c(0, 80), ylim = c(0, 35))
@@ -110,19 +110,19 @@ legend("topleft", legend = c("BxM Hybrid","F. mandshurica","F. nigra", "F. penns
 levels(bark$species)
 
 #calculates species richness for each site
-specnumber(bark[7:71])
+specnumber(bark[7:64])
 
 #calculates species richness by treatment
-specnumber(bark[7:71], groups = bark$species)
+specnumber(bark[7:64], groups = bark$species)
 
-bark.sp.j1 <- diversitycomp(bark[7:71], y = bark, factor1 = "species", index = "jack1")
+bark.sp.j1 <- diversitycomp(bark[7:64], y = bark, factor1 = "species", index = "jack1")
 bark.sp.j1
-bark.sp.j2 <- diversitycomp(bark[7:71], y = bark, factor1 = "species", index = "jack2")
+bark.sp.j2 <- diversitycomp(bark[7:64], y = bark, factor1 = "species", index = "jack2")
 bark.sp.j2
 
-bark.j1 <- diversityresult(bark[7:71], y=NULL, index = "jack1")
+bark.j1 <- diversityresult(bark[7:64], y=NULL, index = "jack1")
 bark.j1
-bark.j2 <- diversityresult(bark[7:71], y=NULL, index = "jack2")
+bark.j2 <- diversityresult(bark[7:64], y=NULL, index = "jack2")
 bark.j2
 
 
@@ -138,40 +138,40 @@ bark.B1 <- bark[which(bark$block == "1"),]
 bark.B1.1 <- bark.B1[,-1:-6]
 B_Block1 <- rowsum.data.frame(bark.B1.1, bark.B1$species)
 B_Block1$code <- c("B1H", "B1M", "B1N", "B1P")
-rownames(B_Block1) <- B_Block1[,66]
-B_Block1 <- B_Block1[,-66]
+rownames(B_Block1) <- B_Block1[,59]
+B_Block1 <- B_Block1[,-59]
 rm(bark.B1, bark.B1.1)
 
 bark.B2 <- bark[which(bark$block == "2"),]
 bark.B2.2 <- bark.B2[,-1:-6]
 B_Block2 <- rowsum.data.frame(bark.B2.2, bark.B2$species)
 B_Block2$code <- c("B2H", "B2M", "B2N", "B2P")
-rownames(B_Block2) <- B_Block2[,66]
-B_Block2 <- B_Block2[,-66]
+rownames(B_Block2) <- B_Block2[,59]
+B_Block2 <- B_Block2[,-59]
 rm(bark.B2, bark.B2.2)
 
 bark.B3 <- bark[which(bark$block == "3"),]
 bark.B3.3 <- bark.B3[,-1:-6]
 B_Block3 <- rowsum.data.frame(bark.B3.3, bark.B3$species)
 B_Block3$code <- c("B3H", "B3M", "B3N", "B3P")
-rownames(B_Block3) <- B_Block3[,66]
-B_Block3 <- B_Block3[,-66]
+rownames(B_Block3) <- B_Block3[,59]
+B_Block3 <- B_Block3[,-59]
 rm(bark.B3, bark.B3.3)
 
 bark.B4 <- bark[which(bark$block == "4"),]
 bark.B4.4 <- bark.B4[,-1:-6]
 B_Block4 <- rowsum.data.frame(bark.B4.4, bark.B4$species)
 B_Block4$code <- c("B4H", "B4M", "B4N", "B4P")
-rownames(B_Block4) <- B_Block4[,66]
-B_Block4 <- B_Block4[,-66]
+rownames(B_Block4) <- B_Block4[,59]
+B_Block4 <- B_Block4[,-59]
 rm(bark.B4, bark.B4.4)
 
 bark.B5 <- bark[which(bark$block == "5"),]
 bark.B5.5 <- bark.B5[,-1:-6]
 B_Block5 <- rowsum.data.frame(bark.B5.5, bark.B5$species)
 B_Block5$code <- c("B5H", "B5M", "B5N", "B5P")
-rownames(B_Block5) <- B_Block5[,66]
-B_Block5 <- B_Block5[,-66]
+rownames(B_Block5) <- B_Block5[,59]
+B_Block5 <- B_Block5[,-59]
 rm(bark.B5, bark.B5.5)
 
 bark2 <-rbind(B_Block1, B_Block2, B_Block3, B_Block4, B_Block5)
@@ -193,7 +193,7 @@ bark2$block <- c("1", "1", "1", "1",
                  "4", "4", "4", "4",
                  "5", "5", "5", "5")
 
-bark2 <- bark2[,c(66,67,1:65)]
+bark2 <- bark2[,c(59,60,1:58)]
 
 str(bark2)
 bark2 <- within(bark2, {
@@ -202,7 +202,7 @@ bark2 <- within(bark2, {
 })
 
 # create beta part object for analyses
-bark.core <- betapart.core(bark2[3:67])
+bark.core <- betapart.core(bark2[3:60])
 
 # returns three dissimilarity matrices containing 
 # pairwise between-site values of each beta-diversity component
@@ -233,7 +233,7 @@ points(nmds.bark.sor, display = "sites", pch = pchvec1[bark2$species], cex = 1.5
 ordiellipse(nmds.bark.sor, groups = bark2$species, display = "sites", draw = "lines", 
             col = colvec2[bark2$species], lwd = 3, conf = 0.90)
 ordihull(nmds.bark.sor, groups = bark2$species, display = "sites", draw = c("polygon"), col = NULL,
-         border = colvec[bark2$species], lwd = 2.5)
+         border = colvec2[bark2$species], lwd = 2.5)
 legend("topleft", legend = c("BxM hybrid","F. mandshurica","F. nigra", "F. pennsylvanica"), 
        pch = pchvec1[bark2$species], cex = 1.2, bty = "n", col = colvec2[bark2$species])
 
@@ -243,7 +243,6 @@ legend("topleft", legend = c("BxM hybrid","F. mandshurica","F. nigra", "F. penns
 
 # PERMANOVA tests whether the group centroid of beetle communities on tree species
 # differs in multivariate space (e.g. different community composition)
-adonis2(bark2.dist$beta.sor ~ bark2$block*bark2$species, permutations = 999)
 adonis2(bark2.dist$beta.sor ~ bark2$species, permutations = 999)
 adonis2(bark2.dist$beta.sor ~ bark2$block, permutations = 999)
 pairwise.adonis(bark2.dist$beta.sor, bark2$species)
@@ -274,7 +273,7 @@ points(nmds.bark.sim, display = "sites", pch = pchvec1[bark2$species], cex = 1.5
 ordiellipse(nmds.bark.sim, groups = bark2$species, display = "sites", draw = "lines", 
             col = colvec2[bark2$species], lwd = 3, conf = 0.90)
 ordihull(nmds.bark.sim, groups = bark2$species, display = "sites", draw = c("polygon"), col = NULL,
-         border = colvec[bark2$species], lwd = 2.5)
+         border = colvec2[bark2$species], lwd = 2.5)
 legend("topright", legend = c("BxM Hybrid","F. mandshurica","F. nigra", "F. pennsylvanica"), 
        pch = pchvec1[bark2$species], cex = 1.2, bty = "n", col = colvec2[bark2$species])
 
@@ -284,7 +283,6 @@ legend("topright", legend = c("BxM Hybrid","F. mandshurica","F. nigra", "F. penn
 
 # PERMANOVA tests whether the group centroid of beetle communities on tree species
 # differs in multivariate space (e.g. different community composition)
-adonis2(bark2.dist$beta.sim ~ bark2$block*bark2$species, permutations = 999)
 adonis2(bark2.dist$beta.sim ~ bark2$species, permutations = 999)
 adonis2(bark2.dist$beta.sim ~ bark2$block, permutations = 999)
 pairwise.adonis(bark2.dist$beta.sim, bark2$species)
@@ -315,7 +313,7 @@ points(nmds.bark.sne, display = "sites", pch = pchvec1[bark2$species], cex = 1.5
 ordiellipse(nmds.bark.sne, groups = bark2$species, display = "sites", draw = "lines", 
             col = colvec2[bark2$species], lwd = 3, conf = 0.90)
 ordihull(nmds.bark.sne, groups = bark2$species, display = "sites", draw = c("polygon"), col = NULL,
-         border = colvec[bark2$species], lwd = 2.5)
+         border = colvec2[bark2$species], lwd = 2.5)
 legend("topright", legend = c("BxM Hybrid","F. mandshurica","F. nigra", "F. pennsylvanica"), 
        pch = pchvec[bark2$species], cex = 1.2, bty = "n", col = colvec[bark2$species])
 
@@ -325,7 +323,6 @@ legend("topright", legend = c("BxM Hybrid","F. mandshurica","F. nigra", "F. penn
 
 # PERMANOVA tests whether the group centroid of beetle communities on tree species
 # differs in multivariate space (e.g. different community composition)
-adonis2(bark2.dist$beta.sne ~ bark2$block*bark2$species, permutations = 999)
 adonis2(bark2.dist$beta.sne ~ bark2$species, permutations = 999)
 adonis2(bark2.dist$beta.sne ~ bark2$block, permutations = 999)
 pairwise.adonis(bark2.dist$beta.sne, bark2$species)
@@ -353,10 +350,10 @@ bark.H <- bark2[which(bark2$species == "H"),]
 bark.M <- bark2[which(bark2$species == "M"),]
 bark.P <- bark2[which(bark2$species == "P"),]
 
-bark.core.N <- betapart.core(bark.N[3:67])
-bark.core.H <- betapart.core(bark.H[3:67])
-bark.core.M <- betapart.core(bark.M[3:67])
-bark.core.P <- betapart.core(bark.P[3:67])
+bark.core.N <- betapart.core(bark.N[3:60])
+bark.core.H <- betapart.core(bark.H[3:60])
+bark.core.M <- betapart.core(bark.M[3:60])
+bark.core.P <- betapart.core(bark.P[3:60])
 
 beta.multi(bark.core.H, index.family = "sorensen")
 beta.multi(bark.core.M, index.family = "sorensen")
@@ -374,15 +371,15 @@ theme_set(theme_bw())
 
 # bark beta-diversity
 b.b <- data.frame(
-  Turnover = c(0.78, 0.68, 0.76, 0.77),
-  Nestedness = c(0.05, 0.12, 0.04, 0.02)
+  Turnover = c(0.78, 0.68, 0.73, 0.75),
+  Nestedness = c(0.05, 0.12, 0.06, 0.04)
 )
 
 b.b$species <- c("NxM hybrid","F. mandshurica","F. nigra", "F. pennsylvanica")
 
 b.b <- melt(b.b, id.vars = "species")
 
-png("BetaDiversity_Bark_Ash.png", width = 1000, height = 800)
+png("NBetaDiversity_Bark_Ash.png", width = 1000, height = 800)
 ggplot(b.b, aes(fill = variable, x = species, y = value)) + 
   geom_bar(position = "stack", stat = "identity") +
   ylab("Beta-diversity") + xlab("") +
@@ -418,13 +415,13 @@ rare.spray.M <- spray[which(spray$species == "M"),]
 rare.spray.N <- spray[which(spray$species == "N"),]
 rare.spray.P <- spray[which(spray$species == "P"),]
 
-sp.spray.H <- specaccum(rare.spray.H[7:49], method = "rarefaction", permutations = 100, gamma = "jack2")
-sp.spray.M <- specaccum(rare.spray.M[7:49], method = "rarefaction", permutations = 100, gamma = "jack2")
-sp.spray.N <- specaccum(rare.spray.N[7:49], method = "rarefaction", permutations = 100, gamma = "jack2")
-sp.spray.P <- specaccum(rare.spray.P[7:49], method = "rarefaction", permutations = 100, gamma = "jack2")
+sp.spray.H <- specaccum(rare.spray.H[7:45], method = "rarefaction", permutations = 100, gamma = "jack2")
+sp.spray.M <- specaccum(rare.spray.M[7:45], method = "rarefaction", permutations = 100, gamma = "jack2")
+sp.spray.N <- specaccum(rare.spray.N[7:45], method = "rarefaction", permutations = 100, gamma = "jack2")
+sp.spray.P <- specaccum(rare.spray.P[7:45], method = "rarefaction", permutations = 100, gamma = "jack2")
 
 plot(sp.spray.H, col = "#FDE725FF", xvar = c("individuals"), lty = 1, lwd = 3,
-     ylab = "Species Richness", xlab = "Number of Individuals", xlim = c(0, 150), ylim = c(0, 35))
+     ylab = "Species Richness", xlab = "Number of Individuals", xlim = c(0, 80), ylim = c(0, 35))
 plot(sp.spray.M, add = TRUE, xvar = c("individuals"), lty = 2, lwd = 3, col = "#2D708EFF")
 plot(sp.spray.N, add = TRUE, xvar = c("individuals"), lty = 3, lwd = 3, col = "#481567FF")
 plot(sp.spray.P, add = TRUE, xvar = c("individuals"), lty = 4, lwd = 3, col = "#73D055FF")
@@ -432,19 +429,19 @@ legend("topleft", legend = c("BxM Hybrid","F. mandshurica","F. nigra", "F. penns
        lty = ltyvec, bty = "n", lwd = 3, col = colvec2)
 
 #calculates species richness for each site
-specnumber(spray[7:49])
+specnumber(spray[7:45])
 
 #calculates species richness by treatment
-specnumber(spray[7:49], groups = spray$species)
+specnumber(spray[7:45], groups = spray$species)
 
-spray.sp.j1 <- diversitycomp(spray[7:49], y = spray, factor1 = "species", index = "jack1")
+spray.sp.j1 <- diversitycomp(spray[7:45], y = spray, factor1 = "species", index = "jack1")
 spray.sp.j1
-spray.sp.j2 <- diversitycomp(spray[7:49], y = spray, factor1 = "species", index = "jack2")
+spray.sp.j2 <- diversitycomp(spray[7:45], y = spray, factor1 = "species", index = "jack2")
 spray.sp.j2
 
-spray.j1 <- diversityresult(spray[7:49], y=NULL, index = "jack1")
+spray.j1 <- diversityresult(spray[7:45], y=NULL, index = "jack1")
 spray.j1
-spray.j2 <- diversityresult(spray[7:49], y=NULL, index = "jack2")
+spray.j2 <- diversityresult(spray[7:45], y=NULL, index = "jack2")
 spray.j2
 
 
@@ -460,40 +457,40 @@ spray.B1 <- spray[which(spray$block == "1"),]
 spray.B1.1 <- spray.B1[,-1:-6]
 S_Block1 <- rowsum.data.frame(spray.B1.1, spray.B1$species)
 S_Block1$code <- c("B1H", "B1M", "B1N", "B1P")
-rownames(S_Block1) <- S_Block1[,44]
-S_Block1 <- S_Block1[,-44]
+rownames(S_Block1) <- S_Block1[,40]
+S_Block1 <- S_Block1[,-40]
 rm(spray.B1, spray.B1.1)
 
 spray.B2 <- spray[which(spray$block == "2"),]
 spray.B2.2 <- spray.B2[,-1:-6]
 S_Block2 <- rowsum.data.frame(spray.B2.2, spray.B2$species)
 S_Block2$code <- c("B2H", "B2M", "B2N", "B2P")
-rownames(S_Block2) <- S_Block2[,44]
-S_Block2 <- S_Block2[,-44]
+rownames(S_Block2) <- S_Block2[,40]
+S_Block2 <- S_Block2[,-40]
 rm(spray.B2, spray.B2.2)
 
 spray.B3 <- spray[which(spray$block == "3"),]
 spray.B3.3 <- spray.B3[,-1:-6]
 S_Block3 <- rowsum.data.frame(spray.B3.3, spray.B3$species)
 S_Block3$code <- c("B3H", "B3M", "B3N", "B3P")
-rownames(S_Block3) <- S_Block3[,44]
-S_Block3 <- S_Block3[,-44]
+rownames(S_Block3) <- S_Block3[,40]
+S_Block3 <- S_Block3[,-40]
 rm(spray.B3, spray.B3.3)
 
 spray.B4 <- spray[which(spray$block == "4"),]
 spray.B4.4 <- spray.B4[,-1:-6]
 S_Block4 <- rowsum.data.frame(spray.B4.4, spray.B4$species)
 S_Block4$code <- c("B4H", "B4M", "B4N", "B4P")
-rownames(S_Block4) <- S_Block4[,44]
-S_Block4 <- S_Block4[,-44]
+rownames(S_Block4) <- S_Block4[,40]
+S_Block4 <- S_Block4[,-40]
 rm(spray.B4, spray.B4.4)
 
 spray.B5 <- spray[which(spray$block == "5"),]
 spray.B5.5 <- spray.B5[,-1:-6]
 S_Block5 <- rowsum.data.frame(spray.B5.5, spray.B5$species)
 S_Block5$code <- c("B5H", "B5M", "B5N", "B5P")
-rownames(S_Block5) <- S_Block5[,44]
-S_Block5 <- S_Block5[,-44]
+rownames(S_Block5) <- S_Block5[,40]
+S_Block5 <- S_Block5[,-40]
 rm(spray.B5, spray.B5.5)
 
 spray2 <-rbind(S_Block1, S_Block2, S_Block3, S_Block4, S_Block5)
@@ -515,7 +512,7 @@ spray2$block <- c("1", "1", "1", "1",
                  "4", "4", "4", "4",
                  "5", "5", "5", "5")
 
-spray2 <- spray2[,c(44,45,1:43)]
+spray2 <- spray2[,c(40,41,1:39)]
 
 str(spray2)
 spray2 <- within(spray2, {
@@ -524,7 +521,7 @@ spray2 <- within(spray2, {
 })
 
 # create beta part object for analyses
-spray.core <- betapart.core(spray2[3:45])
+spray.core <- betapart.core(spray2[3:41])
 
 # returns three dissimilarity matrices containing 
 # pairwise between-site values of each beta-diversity component
@@ -549,7 +546,7 @@ levels(spray2$species)
 # P = green ash 'Patmore' (Fraxinus pennsylvanica)
 
 
-ordiplot(nmds.spray.sor, type="n", xlim = c(-1.5, 1.0), ylim = c(-1, 1))
+ordiplot(nmds.spray.sor, type="n", xlim = c(-1.0, 1.0), ylim = c(-0.8, 0.8))
 points(nmds.spray.sor, display = "sites", pch = pchvec1[spray2$species], cex = 1.5, 
        col = colvec2[spray2$species])
 ordiellipse(nmds.spray.sor, groups = spray2$species, display = "sites", draw = "lines", 
@@ -565,7 +562,6 @@ legend("topleft", legend = c("BxM Hybrid","F. mandshurica","F. nigra", "F. penns
 
 # PERMANOVA tests whether the group centroid of beetle communities on tree species
 # differs in multivariate space (e.g. different community composition)
-adonis2(spray2.dist$beta.sor ~ spray2$block*spray2$species, permutations = 999)
 adonis2(spray2.dist$beta.sor ~ spray2$species, permutations = 999)
 adonis2(spray2.dist$beta.sor ~ spray2$block, permutations = 999)
 pairwise.adonis(spray2.dist$beta.sor, spray2$species)
@@ -596,7 +592,7 @@ points(nmds.spray.sim, display = "sites", pch = pchvec1[spray2$species], cex = 1
 ordiellipse(nmds.spray.sim, groups = spray2$species, display = "sites", draw = "lines", 
             col = colvec2[spray2$species], lwd = 2.5, conf = 0.90)
 ordihull(nmds.spray.sim, groups = spray2$species, display = "sites", draw = c("polygon"), col = NULL,
-         border = colvec[spray2$species], lwd = 2.5)
+         border = colvec2[spray2$species], lwd = 2.5)
 legend("topright", legend = c("BxM Hybrid","F. mandshurica","F. nigra", "F. pennsylvanica"), 
        pch = pchvec[spray2$species], cex = 1.2, bty = "n", col = colvec[spray2$species])
 
@@ -606,7 +602,6 @@ legend("topright", legend = c("BxM Hybrid","F. mandshurica","F. nigra", "F. penn
 
 # PERMANOVA tests whether the group centroid of beetle communities on tree species
 # differs in multivariate space (e.g. different community composition)
-adonis2(spray2.dist$beta.sim ~ spray2$block*spray2$species, permutations = 999)
 adonis2(spray2.dist$beta.sim ~ spray2$species, permutations = 999)
 adonis2(spray2.dist$beta.sim ~ spray2$block, permutations = 999)
 pairwise.adonis(spray2.dist$beta.sim, spray2$species)
@@ -637,7 +632,7 @@ points(nmds.spray.sne, display = "sites", pch = pchvec1[spray2$species], cex = 1
 ordiellipse(nmds.spray.sne, groups = spray2$species, display = "sites", draw = "lines", 
             col = colvec2[spray2$species], lwd = 2.5, conf = 0.90)
 ordihull(nmds.spray.sne, groups = spray2$species, display = "sites", draw = c("polygon"), col = NULL,
-         border = colvec[spray2$species], lwd = 2.5)
+         border = colvec2[spray2$species], lwd = 2.5)
 legend("topright", legend = c("BxM Hybrid","F. mandshurica","F. nigra", "F. pennsylvanica"), 
        pch = pchvec[spray2$species], cex = 1.2, bty = "n", col = colvec[spray2$species])
 
@@ -647,7 +642,6 @@ legend("topright", legend = c("BxM Hybrid","F. mandshurica","F. nigra", "F. penn
 
 # PERMANOVA tests whether the group centroid of beetle communities on tree species
 # differs in multivariate space (e.g. different community composition)
-adonis2(spray2.dist$beta.sne ~ spray2$block*spray2$species, permutations = 999)
 adonis2(spray2.dist$beta.sne ~ spray2$species, permutations = 999)
 adonis2(spray2.dist$beta.sne ~ spray2$block, permutations = 999)
 pairwise.adonis(spray2.dist$beta.sne, spray2$species)
@@ -671,19 +665,19 @@ TukeyHSD(spray.beta.sne, which = "group", conf.level = 0.95)
 # along with turnover and nestedness components of that dissimilarity
 
 # pull out reps of each trees species
-spray.N <- spray2[which(spray2$species == "N"),]
 spray.H <- spray2[which(spray2$species == "H"),]
 spray.M <- spray2[which(spray2$species == "M"),]
+spray.N <- spray2[which(spray2$species == "N"),]
 spray.P <- spray2[which(spray2$species == "P"),]
 
-spray.core.N <- betapart.core(spray.N[3:45])
-spray.core.H <- betapart.core(spray.H[3:45])
-spray.core.M <- betapart.core(spray.M[3:45])
-spray.core.P <- betapart.core(spray.P[3:45])
+spray.core.H <- betapart.core(spray.H[3:41])
+spray.core.M <- betapart.core(spray.M[3:41])
+spray.core.N <- betapart.core(spray.N[3:41])
+spray.core.P <- betapart.core(spray.P[3:41])
 
-beta.multi(spray.core.N, index.family = "sorensen")
 beta.multi(spray.core.H, index.family = "sorensen")
 beta.multi(spray.core.M, index.family = "sorensen")
+beta.multi(spray.core.N, index.family = "sorensen")
 beta.multi(spray.core.P, index.family = "sorensen")
 
 # create a data frame that contains the beta.sim and beta.sne
@@ -693,15 +687,15 @@ beta.multi(spray.core.P, index.family = "sorensen")
 
 # spray beta-diversity
 s.b <- data.frame(
-  Turnover = c(0.71, 0.62, 0.61, 0.73),
-  Nestedness = c(0.04, 0.08, 0.06, 0.06)
+  Turnover = c(0.65, 0.64, 0.61, 0.72),
+  Nestedness = c(0.08, 0.08, 0.07, 0.06)
 )
 
 s.b$species <- c("NxM Hybrid","F. mandshurica","F. nigra", "F. pennsylvanica")
 
 s.b <- melt(s.b, id.vars = "species")
 
-png("BetaDiversity_Spray_Ash.png", width = 1000, height = 800)
+png("NBetaDiversity_Spray_Ash.png", width = 1000, height = 800)
 ggplot(s.b, aes(fill = variable, x = species, y = value)) + 
   geom_bar(position = "stack", stat = "identity") +
   ylab("Beta-diversity") + xlab("") +
@@ -714,19 +708,19 @@ dev.off()
 ###############################################################################################
 
 ## Make rarefaction figure
-png("Species_Rarefaction_Ash.png", width = 2000, height = 800)
+png("NSpecies_Rarefaction_Ash.png", width = 2000, height = 800)
 layout(matrix(c(1,2), nrow = 1, ncol = 2, byrow = TRUE))
 layout.show(2)
 
 par(mar=c(6,7,3,1))
 plot(sp.spray.H, col = "#FDE725FF", xvar = c("individuals"), lty = 1, lwd = 3, cex.lab = 2.5, cex.axis = 1.8,
-     ylab = "Species Richness", xlab = "Number of Individuals", xlim = c(0, 150), ylim = c(0, 35))
+     ylab = "Species Richness", xlab = "Number of Individuals", xlim = c(0, 80), ylim = c(0, 35))
 plot(sp.spray.M, add = TRUE, xvar = c("individuals"), lty = 2, lwd = 3, col = "#2D708EFF")
 plot(sp.spray.N, add = TRUE, xvar = c("individuals"), lty = 3, lwd = 3, col = "#481567FF")
 plot(sp.spray.P, add = TRUE, xvar = c("individuals"), lty = 4, lwd = 3, col = "#73D055FF")
 legend("topleft", legend = c("BxM hybrid","F. mandshurica","F. nigra", "F. pennsylvanica"), 
        lty = ltyvec, bty = "n", lwd = 5, col = colvec2, cex = 2.5)
-text(142,34, "A", pos = 4, font = 2, cex = 3)
+text(76,34, "A", pos = 4, font = 2, cex = 3)
 
 par(mar=c(6,7,3,1))
 plot(sp.bark.H, col = "#FDE725FF", xvar = c("individuals"), lty = 1, lwd = 3, cex.lab = 2.5, cex.axis = 1.8,
@@ -812,7 +806,7 @@ dev.off()
 
 # Combined spray and bark NMDS figure
 
-png("NMDS_Herbivores_Canopy_Bark_Ash.png", width = 1600, height = 2000, pointsize = 30)
+png("NMDS_NHerbivores_Canopy_Bark_Ash.png", width = 1600, height = 2000, pointsize = 30)
 
 par(mfrow=c(3,2))
 par(mar=c(5,4,3,2))
