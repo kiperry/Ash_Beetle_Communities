@@ -236,7 +236,7 @@ ordihull(nmds.bark.sor, groups = bark2$species, display = "sites", draw = c("pol
          border = colvec2[bark2$species], lwd = 2.5)
 legend("topleft", legend = c("BxM hybrid","F. mandshurica","F. nigra", "F. pennsylvanica"), 
        pch = pchvec1[bark2$species], cex = 1.2, bty = "n", col = colvec2[bark2$species])
-
+orditorp(nmds.bark.sor, "sites") #used to double check the legend!
 
 ## Test for differences in herbivore beetle composition across ash tree species
 ## for tota beta-diversity component
@@ -276,7 +276,7 @@ ordihull(nmds.bark.sim, groups = bark2$species, display = "sites", draw = c("pol
          border = colvec2[bark2$species], lwd = 2.5)
 legend("topright", legend = c("BxM Hybrid","F. mandshurica","F. nigra", "F. pennsylvanica"), 
        pch = pchvec1[bark2$species], cex = 1.2, bty = "n", col = colvec2[bark2$species])
-
+orditorp(nmds.bark.sim, "sites")
 
 ## Test for differences in herbivore beetle composition across ash tree species
 ## for turnover beta-diversity component
@@ -718,7 +718,7 @@ plot(sp.spray.H, col = "#FDE725FF", xvar = c("individuals"), lty = 1, lwd = 3, c
 plot(sp.spray.M, add = TRUE, xvar = c("individuals"), lty = 2, lwd = 3, col = "#2D708EFF")
 plot(sp.spray.N, add = TRUE, xvar = c("individuals"), lty = 3, lwd = 3, col = "#481567FF")
 plot(sp.spray.P, add = TRUE, xvar = c("individuals"), lty = 4, lwd = 3, col = "#73D055FF")
-legend("topleft", legend = c("BxM hybrid","F. mandshurica","F. nigra", "F. pennsylvanica"), 
+legend("topleft", legend = c("BxM hybrid","Manchurian ash","Black ash", "Green ash"), 
        lty = ltyvec, bty = "n", lwd = 5, col = colvec2, cex = 2.5)
 text(76,34, "A", pos = 4, font = 2, cex = 3)
 
@@ -746,9 +746,10 @@ points(nmds.spray.sor, display = "sites", pch = pchvec1[spray2$species], cex = 1
        col = colvec2[spray2$species])
 ordiellipse(nmds.spray.sor, groups = spray2$species, display = "sites", draw = "lines", 
             col = colvec2[spray2$species], lwd = 3, conf = 0.90)
-legend("topleft", legend = c("BxM hybrid","F. mandshurica","F. nigra", "F. pennsylvanica"), 
+legend("topleft", legend = c("BxM hybrid","Manchurian ash","Black ash", "Green ash"), 
        pch = pchvec1[spray2$species], cex = 1.5, bty = "n", col = colvec2[spray2$species])
 text(1, 0.85, "A", pos = 4, font = 2, cex = 1.8)
+
 
 ordiplot(nmds.spray.sim, type="n", xlim = c(-1, 1), ylim = c(-0.8, 0.8))
 points(nmds.spray.sim, display = "sites", pch = pchvec1[spray2$species], cex = 1.5, 
@@ -782,9 +783,10 @@ points(nmds.bark.sor, display = "sites", pch = pchvec1[bark2$species], cex = 1.5
        col = colvec2[bark2$species])
 ordiellipse(nmds.bark.sor, groups = bark2$species, display = "sites", draw = "lines", 
             col = colvec2[bark2$species], lwd = 3, conf = 0.90)
-legend("topleft", legend = c("BxM hybrid","F. mandshurica","F. nigra", "F. pennsylvanica"), 
+legend("topleft", legend = c("BxM hybrid","Manchurian ash","Black ash", "Green ash"), 
        pch = pchvec1[bark2$species], cex = 1.5, bty = "n", col = colvec2[bark2$species])
 text(0.66, 0.75, "A", pos = 4, font = 2, cex = 1.8)
+
 
 ordiplot(nmds.bark.sim, type="n", xlim = c(-1, 0.8), ylim = c(-0.6, 0.6))
 points(nmds.bark.sim, display = "sites", pch = pchvec1[bark2$species], cex = 1.5, 
@@ -816,7 +818,7 @@ points(nmds.spray.sor, display = "sites", pch = pchvec1[spray2$species], cex = 1
        col = colvec2[spray2$species])
 ordiellipse(nmds.spray.sor, groups = spray2$species, display = "sites", draw = "lines", 
             col = colvec2[spray2$species], lwd = 3, conf = 0.90)
-legend("topleft", legend = c("BxM hybrid","F. mandshurica","F. nigra", "F. pennsylvanica"), 
+legend("topleft", legend = c("BxM hybrid","Manchurian ash","Black ash", "Green ash"), 
        pch = pchvec1[bark2$species], cex = 1.5, bty = "n", col = colvec2[bark2$species])
 text(0.99, 0.89, "A", pos = 4, font = 2, cex = 1.8)
 
